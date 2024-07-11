@@ -1,7 +1,8 @@
 import ErrorHandler from "../error/error.js";
 import{Reservation} from "../models/reservationSchema.js";
 
-export const sendReservation = async (req,res,next) => {
+
+ export const sendReservation = async (req,res,next) => {
     const {firstName,lastName,email,phone,time, Date } = req.body;
 
 if( !firstName|| ! lastName || ! email || !phone || !time || !Date) {
@@ -15,12 +16,14 @@ try {
         message: "Reservation sent successfully",
     });
 }catch(error) {
-    if(error.name === "validationerror" ){
+    if(error.name === "validation error" ){
         const validationError = object.values(error.errors).map(
-            (err) => err.message
-        );
-        return next(new ErrorHandler(validationErrors.join(","),400));
+            err => err.message);
+
+        return next(new ErrorHandler(validationErrors.join(", "),400));
     }
-}
+
 return next (error); 
+}
 };
+

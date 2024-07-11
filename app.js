@@ -9,6 +9,7 @@ const port = 3001;
 dotenv.config({path: "./config/config.env" })
 app.use(
     cors ({
+        // origin:[process.env.FRONTEND_URL],
         origin:[process.env.FRONTEND_URL],
         methods :["POST"],
         credentials :true,
