@@ -16,13 +16,13 @@ const userSchema = new mongoose.Schema({
     time: String
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 
-app.post('http://localhost:3001/api/v1/reservation/send', (req, res) => {
+app.post('http://localhost:3000/api/v1/reservation/send', (req, res) => {
     const newUser = new User(req.body);
     newUser.save()
         .then(() => res.status(200).send('User saved!'))
         .catch(err => res.status(400).send(err));
 });
 
-app.listen(3001, () => console.log('Server running on port 3001'));
+app.listen(3000, () => console.log('Server running on port 3001'));
